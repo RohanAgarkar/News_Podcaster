@@ -91,37 +91,36 @@ def process_data(data):
     return text
 
 if __name__ == "__main__":
-    ...
-    # data = asyncio.run(gather_data())
+    data = asyncio.run(gather_data())
 
-    # # Main logic
-    # text = text_compiler(process_data(data))
+    # Main logic
+    text = text_compiler(process_data(data))
     
-    # #create dirs
-    # for t in text.transcript:
-    #     os.makedirs(f"audio/{t.title}", exist_ok=True)
+    #create dirs
+    for t in text.transcript:
+        os.makedirs(f"audio/{t.title}", exist_ok=True)
     
-    # # Create audio files
-    # for t in text.transcript:
-    #     root_path = f"audio/{t.title}"
-    #     for i, segment in enumerate(tqdm.tqdm(t.chapters, desc=t.title)):
-    #         podcast_audio(segment,voice="ara", output_path=f"{root_path}/segment_{i}.mp3")
-    #         # podcast_audio(segment,voice="Leda", output_path=f"{root_path}/segment_{i}.pcm")
+    # Create audio files
+    for t in text.transcript:
+        root_path = f"audio/{t.title}"
+        for i, segment in enumerate(tqdm.tqdm(t.chapters, desc=t.title)):
+            podcast_audio(segment,voice="ara", output_path=f"{root_path}/segment_{i}.mp3")
+            # podcast_audio(segment,voice="Leda", output_path=f"{root_path}/segment_{i}.pcm")
 
-    #     segments_list = [os.path.join(root_path, segment) for segment in os.listdir(root_path)]
-    #     segments_list.sort(
-    #         key=lambda x: int(
-    #             os.path.basename(x)
-    #             .split("_")[1]
-    #             .split(".")[0]
-    #         )
-    #     )
+        segments_list = [os.path.join(root_path, segment) for segment in os.listdir(root_path)]
+        segments_list.sort(
+            key=lambda x: int(
+                os.path.basename(x)
+                .split("_")[1]
+                .split(".")[0]
+            )
+        )
 
-    #     combined = AudioSegment.empty()
-    #     for segment in tqdm.tqdm(segments_list, desc=t.title):
-    #         combined += AudioSegment.from_file(segment, format="mp3")
-    #     combined.export(f"{root_path}/{t.title}.mp3", format="mp3")
+        combined = AudioSegment.empty()
+        for segment in tqdm.tqdm(segments_list, desc=t.title):
+            combined += AudioSegment.from_file(segment, format="mp3")
+        combined.export(f"{root_path}/{t.title}.mp3", format="mp3")
 
-    #     # Clean up segment files
-    #     for segment in segments_list:
-    #         os.remove(segment)
+        # Clean up segment files
+        for segment in segments_list:
+            os.remove(segment)
