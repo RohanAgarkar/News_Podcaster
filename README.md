@@ -114,9 +114,3 @@ NewsPodcast/
 - **OpenRouter API Key**: Required for both text compilation (GPT-4o-mini) and text-to-speech (x-ai/grok-voice-tts-1.0)
 
 Get your API key at: https://openrouter.ai/
-
-## Notes
-
-- The main execution logic in `main.py` is currently commented out. Uncomment the relevant sections to enable the full pipeline.
-- Audio generation uses the "ara" voice by default, but can be changed in the code.
-- The project uses external APIs (archivejson-production.up.railway.app, accessarticlenow.com) for paywall bypass.
